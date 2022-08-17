@@ -242,54 +242,56 @@ function Dashboard() {
 			</div>
 			{/* <form
 			> */}
-			<div
-				style={{
-					display: "flex",
-					flexDirection: width < 500 ? "column" : "row",
-					justifyContent: "center",
-					alignItems: "center",
-					marginTop: 20,
-					marginBottom: 20,
-				}}
-			>
-				<input
-					value={todo}
-					onChange={(e) => setTodo(e.target.value)}
-					placeholder="Add what you want to do..."
+			<form>
+				<div
 					style={{
-						height: 40,
-						width: "40vw",
-						paddingLeft: 10,
-						fontFamily: "Poppins",
-						paddingLeft: 10,
-						borderRadius: 10,
-						outline: "none",
-						border: 0,
-						minWidth: 300,
-						boxShadow: "5px 5px 7px #0007",
-						// paddingTop: 10,
+						display: "flex",
+						flexDirection: width < 500 ? "column" : "row",
+						justifyContent: "center",
+						alignItems: "center",
+						marginTop: 20,
+						marginBottom: 20,
 					}}
-					ref={(input) => (todoRef = input)}
-				/>
-				<button
-					style={{
-						padding: 10,
-						paddingInline: 50,
-						marginTop: width < 500 ? 20 : 0,
-						fontFamily: "Poppins",
-						backgroundColor: color,
-						color: "#fff",
-						borderRadius: 10,
-						border: 0,
-						boxShadow: "5px 5px 7px #0007",
-						cursor: "pointer",
-						marginLeft: 10,
-					}}
-					onClick={editOrAddFunc}
 				>
-					{status}
-				</button>
-			</div>
+					<input
+						value={todo}
+						onChange={(e) => setTodo(e.target.value)}
+						placeholder="Add what you want to do..."
+						style={{
+							height: 40,
+							width: "40vw",
+							paddingLeft: 10,
+							fontFamily: "Poppins",
+							paddingLeft: 10,
+							borderRadius: 10,
+							outline: "none",
+							border: 0,
+							minWidth: 300,
+							boxShadow: "5px 5px 7px #0007",
+							// paddingTop: 10,
+						}}
+						ref={(input) => (todoRef = input)}
+					/>
+					<button
+						style={{
+							padding: 10,
+							paddingInline: 50,
+							marginTop: width < 500 ? 20 : 0,
+							fontFamily: "Poppins",
+							backgroundColor: color,
+							color: "#fff",
+							borderRadius: 10,
+							border: 0,
+							boxShadow: "5px 5px 7px #0007",
+							cursor: "pointer",
+							marginLeft: 10,
+						}}
+						onClick={editOrAddFunc}
+					>
+						{status}
+					</button>
+				</div>
+			</form>
 			{/* </form> */}
 			<div
 				style={{
