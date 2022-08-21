@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import AuthWrapper from "../components/AuthWrapper";
 import { ACCESS_KEY, GOOGLE_CLIENT_ID } from "../constants/config";
 import SettingsIcon from "@mui/icons-material/Settings";
-import GoogleLogin from "react-google-login";
+// import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
 import { baseUrl } from "../constants/constants";
 
@@ -111,46 +111,46 @@ function Auth() {
 		console.log(response);
 	};
 
-	const googleSignUp = async (res) => {
-		console.log("------------------>", res);
-		const user = await res.profileObj;
-		const currentUser = {
-			email: user?.email,
-			name: user?.name,
-			avatar_url: user?.imageUrl,
-		};
-		await axios
-			.post(`${baseUrl}/googleSignup`, currentUser)
-			.then((resp) => {
-				// changeStatus("login");
-				console.log("====", resp);
-				navigate("/dashboard");
-				localStorage.setItem("user", JSON.stringify(resp?.data?.user));
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// const googleSignUp = async (res) => {
+	// 	console.log("------------------>", res);
+	// 	const user = await res.profileObj;
+	// 	const currentUser = {
+	// 		email: user?.email,
+	// 		name: user?.name,
+	// 		avatar_url: user?.imageUrl,
+	// 	};
+	// 	await axios
+	// 		.post(`${baseUrl}/googleSignup`, currentUser)
+	// 		.then((resp) => {
+	// 			// changeStatus("login");
+	// 			console.log("====", resp);
+	// 			navigate("/dashboard");
+	// 			localStorage.setItem("user", JSON.stringify(resp?.data?.user));
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
-	const googleLogin = async (res) => {
-		console.log("------------------>", res);
-		const user = await res.profileObj;
-		await axios
-			.post(`${baseUrl}/googleLogin`, {
-				email: user?.email,
-			})
-			.then((resp) => {
-				// changeStatus("login");
-				console.log("====", resp);
-				navigate("/dashboard");
-				localStorage.setItem("user", JSON.stringify(resp?.data?.user));
-				localStorage.setItem("token", user?.tokenObj?.access_token);
-			})
-			.catch((err) => {
-				console.log(err.response.data.title);
-				setError(err.response.data.title);
-			});
-	};
+	// const googleLogin = async (res) => {
+	// 	console.log("------------------>", res);
+	// 	const user = await res.profileObj;
+	// 	await axios
+	// 		.post(`${baseUrl}/googleLogin`, {
+	// 			email: user?.email,
+	// 		})
+	// 		.then((resp) => {
+	// 			// changeStatus("login");
+	// 			console.log("====", resp);
+	// 			navigate("/dashboard");
+	// 			localStorage.setItem("user", JSON.stringify(resp?.data?.user));
+	// 			localStorage.setItem("token", user?.tokenObj?.access_token);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err.response.data.title);
+	// 			setError(err.response.data.title);
+	// 		});
+	// };
 
 	return (
 		<>
@@ -252,7 +252,7 @@ function Auth() {
 							Login
 						</button>
 						<div style={{ marginTop: 10 }}>
-							<GoogleLogin
+							{/* <GoogleLogin
 								clientId={GOOGLE_CLIENT_ID}
 								buttonText="Sign in with Google"
 								onSuccess={(res) => {
@@ -265,7 +265,7 @@ function Auth() {
 								// 	backgroundColor: color,
 								// 	marginTop: 10,
 								// }}
-							/>
+							/> */}
 						</div>
 						<a style={{ marginTop: 20, color: "#fff" }}>
 							Don't have an account?{" "}
@@ -376,7 +376,7 @@ function Auth() {
 							Sign up
 						</button>
 						<div style={{ marginTop: 10 }}>
-							<GoogleLogin
+							{/* <GoogleLogin
 								clientId={GOOGLE_CLIENT_ID}
 								buttonText="Sign up with Google"
 								onSuccess={(res) => googleSignUp(res)}
@@ -387,7 +387,7 @@ function Auth() {
 								// 	backgroundColor: color,
 								// 	marginTop: 10,
 								// }}
-							/>
+							/> */}
 						</div>
 						<a style={{ marginTop: 20, color: "#fff" }}>
 							Already have an account?{" "}
