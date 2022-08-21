@@ -68,7 +68,7 @@ function Auth() {
 
 	const fetchImages = async () => {
 		const backImage = localStorage.getItem("bgImage");
-		if (backImage === "") {
+		if (!backImage) {
 			localStorage.setItem(
 				"bgImage",
 				"https://wallpaperset.com/w/full/d/f/7/186209.jpg"

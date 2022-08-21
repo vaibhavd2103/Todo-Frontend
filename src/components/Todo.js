@@ -1,6 +1,6 @@
 import React from "react";
 import Moment from "react-moment";
-import { useWindowDimensions } from "../constants/constants";
+import { baseUrl, useWindowDimensions } from "../constants/constants";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import axios from "axios";
@@ -21,7 +21,7 @@ function Todo({
 
 	const completeTodo = async () => {
 		await axios
-			.post(`http://localhost:5000/completeTodo`, {
+			.post(`${baseUrl}/completeTodo`, {
 				todo_id: item?._id,
 			})
 			.then((resp) => {

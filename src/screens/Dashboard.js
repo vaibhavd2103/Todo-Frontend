@@ -40,7 +40,7 @@ function Dashboard() {
 				created_at: new Date(),
 			})
 			.then((resp) => {
-				// console.log("====", resp?.data);
+				console.log("====", resp?.data);
 				setTodo("");
 				setGetTodoTrigger(!getTodoTrigger);
 			})
@@ -245,172 +245,171 @@ function Dashboard() {
 			</div>
 			{/* <form
 			> */}
-			<form>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: width < 500 ? "column" : "row",
-						justifyContent: "center",
-						alignItems: "center",
-						marginTop: 20,
-						marginBottom: 20,
-					}}
-				>
-					<input
-						value={todo}
-						onChange={(e) => setTodo(e.target.value)}
-						placeholder="Add what you want to do..."
-						style={{
-							height: 40,
-							width: "40vw",
-							paddingLeft: 10,
-							fontFamily: "Poppins",
-							paddingLeft: 10,
-							borderRadius: 10,
-							outline: "none",
-							border: 0,
-							minWidth: 300,
-							boxShadow: "5px 5px 7px #0007",
-							// paddingTop: 10,
-						}}
-						ref={(input) => (todoRef = input)}
-					/>
-					<button
-						style={{
-							padding: 10,
-							paddingInline: 50,
-							marginTop: width < 500 ? 20 : 0,
-							fontFamily: "Poppins",
-							backgroundColor: color,
-							color: "#fff",
-							borderRadius: 10,
-							border: 0,
-							boxShadow: "5px 5px 7px #0007",
-							cursor: "pointer",
-							marginLeft: 10,
-						}}
-						onClick={editOrAddFunc}
-					>
-						{status}
-					</button>
-				</div>
-			</form>
-			{/* </form> */}
-			{loading && (
-				<div style={{ display: "flex", flex: 1 }}>
-					<a style={{ color: "#fff", fontSize: 30 }}>Loading...</a>
-				</div>
-			)}
 			<div
 				style={{
 					display: "flex",
-					flexDirection: width < 1000 ? "column" : "row",
+					flexDirection: width < 500 ? "column" : "row",
+					justifyContent: "center",
+					alignItems: "center",
+					marginTop: 20,
+					marginBottom: 20,
 				}}
 			>
-				<div
+				<input
+					value={todo}
+					onChange={(e) => setTodo(e.target.value)}
+					placeholder="Add what you want to do..."
 					style={{
-						display: "flex",
-						flexDirection: "column",
+						height: 40,
+						width: "40vw",
+						paddingLeft: 10,
+						fontFamily: "Poppins",
+						paddingLeft: 10,
+						borderRadius: 10,
+						outline: "none",
+						border: 0,
+						minWidth: 300,
+						boxShadow: "5px 5px 7px #0007",
+						// paddingTop: 10,
 					}}
-				>
-					<a
-						style={{
-							color: "#fff",
-							fontSize: 24,
-							fontWeight: "bold",
-							textAlign: "left",
-							marginLeft: 20,
-							textShadow: "4px 4px 5px #0007",
-							marginBottom: 10,
-						}}
-					>
-						To do's{" "}
-						<span style={{ fontSize: 14, marginLeft: 5 }}>
-							({todos?.length})
-						</span>
-					</a>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "column",
-							overflowY: "auto",
-							height: width < 1000 ? "100%" : "calc(100vh - 270px)",
-						}}
-					>
-						{todos?.map((item) => {
-							return (
-								<div key={item?._id}>
-									{item?.completed === false && (
-										<Todo
-											item={item}
-											color={color}
-											getTodoTrigger={getTodoTrigger}
-											setGetTodoTrigger={setGetTodoTrigger}
-											setHoverTodo={setHoverTodo}
-											hoverTodo={hoverTodo}
-											todoText={todo}
-											setTodoText={setTodo}
-											todoRef={todoRef}
-											setStatus={setStatus}
-											editTodoUI={editTodoUI}
-											setSelectedTodo={setSelectedTodo}
-											setDeleteModal={setDeleteModal}
-										/>
-									)}
-								</div>
-							);
-						})}
-					</div>
-				</div>
-				<div
+					ref={(input) => (todoRef = input)}
+				/>
+				<button
 					style={{
-						display: "flex",
-						flexDirection: "column",
-						marginTop: width < 1000 ? 50 : 0,
-						marginLeft: width < 1000 ? 0 : 15,
+						padding: 10,
+						paddingInline: 50,
+						marginTop: width < 500 ? 20 : 0,
+						fontFamily: "Poppins",
+						backgroundColor: color,
+						color: "#fff",
+						borderRadius: 10,
+						border: 0,
+						boxShadow: "5px 5px 7px #0007",
+						cursor: "pointer",
+						marginLeft: 10,
 					}}
+					onClick={editOrAddFunc}
 				>
-					<a
-						style={{
-							color: "#fff",
-							fontSize: 24,
-							fontWeight: "bold",
-							textAlign: "left",
-							marginLeft: 20,
-							textShadow: "4px 4px 5px #0007",
-							marginBottom: 10,
-						}}
-					>
-						Completed{" "}
-						<span style={{ fontSize: 14, marginLeft: 5 }}>
-							({completedTodos?.length})
-						</span>
-					</a>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "column",
-							overflowY: "auto",
-							height: width < 1000 ? "100%" : "calc(100vh - 270px)",
-						}}
-					>
-						{completedTodos?.map((item) => {
-							return (
-								<div key={item?._id}>
-									{item?.completed === true && (
-										<CompletedTodo
-											item={item}
-											color={color}
-											getTodoTrigger={getTodoTrigger}
-											setGetTodoTrigger={setGetTodoTrigger}
-										/>
-									)}
-								</div>
-							);
-						})}
-					</div>
-				</div>
+					{status}
+				</button>
 			</div>
+			{/* </form> */}
+			{loading ? (
+				<div style={{ display: "flex", flex: 1 }}>
+					<a style={{ color: "#fff", fontSize: 30 }}>Loading...</a>
+				</div>
+			) : (
+				<div
+					style={{
+						display: "flex",
+						flexDirection: width < 1000 ? "column" : "row",
+					}}
+				>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+						}}
+					>
+						<a
+							style={{
+								color: "#fff",
+								fontSize: 24,
+								fontWeight: "bold",
+								textAlign: "left",
+								marginLeft: 20,
+								textShadow: "4px 4px 5px #0007",
+								marginBottom: 10,
+							}}
+						>
+							To do's{" "}
+							<span style={{ fontSize: 14, marginLeft: 5 }}>
+								({todos?.length})
+							</span>
+						</a>
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								overflowY: "auto",
+								height: width < 1000 ? "100%" : "calc(100vh - 270px)",
+							}}
+						>
+							{todos?.map((item) => {
+								return (
+									<div key={item?._id}>
+										{item?.completed === false && (
+											<Todo
+												item={item}
+												color={color}
+												getTodoTrigger={getTodoTrigger}
+												setGetTodoTrigger={setGetTodoTrigger}
+												setHoverTodo={setHoverTodo}
+												hoverTodo={hoverTodo}
+												todoText={todo}
+												setTodoText={setTodo}
+												todoRef={todoRef}
+												setStatus={setStatus}
+												editTodoUI={editTodoUI}
+												setSelectedTodo={setSelectedTodo}
+												setDeleteModal={setDeleteModal}
+											/>
+										)}
+									</div>
+								);
+							})}
+						</div>
+					</div>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							marginTop: width < 1000 ? 50 : 0,
+							marginLeft: width < 1000 ? 0 : 15,
+						}}
+					>
+						<a
+							style={{
+								color: "#fff",
+								fontSize: 24,
+								fontWeight: "bold",
+								textAlign: "left",
+								marginLeft: 20,
+								textShadow: "4px 4px 5px #0007",
+								marginBottom: 10,
+							}}
+						>
+							Completed{" "}
+							<span style={{ fontSize: 14, marginLeft: 5 }}>
+								({completedTodos?.length})
+							</span>
+						</a>
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								overflowY: "auto",
+								height: width < 1000 ? "100%" : "calc(100vh - 270px)",
+							}}
+						>
+							{completedTodos?.map((item) => {
+								return (
+									<div key={item?._id}>
+										{item?.completed === true && (
+											<CompletedTodo
+												item={item}
+												color={color}
+												getTodoTrigger={getTodoTrigger}
+												setGetTodoTrigger={setGetTodoTrigger}
+											/>
+										)}
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</div>
+			)}
 			{photoModal && (
 				<div
 					onClick={() => {
