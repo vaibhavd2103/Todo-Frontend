@@ -6,6 +6,7 @@ import { ACCESS_KEY, GOOGLE_CLIENT_ID } from "../constants/config";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
+import { baseUrl } from "../constants/constants";
 
 function Auth() {
 	const [status, setStatus] = useState("login");
@@ -28,7 +29,7 @@ function Auth() {
 
 	const signUp = async () => {
 		await axios
-			.post("http://localhost:5000/signup", {
+			.post(`${baseUrl}/signup`, {
 				email: email,
 				password: password,
 				name: name,
@@ -48,7 +49,7 @@ function Auth() {
 			setError("Email and  password cannot be empty");
 		} else {
 			await axios
-				.post("http://localhost:5000/login", {
+				.post(`${baseUrl}/login`, {
 					email: email,
 					password: password,
 				})
@@ -119,7 +120,7 @@ function Auth() {
 			avatar_url: user?.imageUrl,
 		};
 		await axios
-			.post("http://localhost:5000/googleSignup", currentUser)
+			.post(`${baseUrl}/googleSignup`, currentUser)
 			.then((resp) => {
 				// changeStatus("login");
 				console.log("====", resp);
@@ -135,7 +136,7 @@ function Auth() {
 		console.log("------------------>", res);
 		const user = await res.profileObj;
 		await axios
-			.post("http://localhost:5000/googleLogin", {
+			.post(`${baseUrl}/googleLogin`, {
 				email: user?.email,
 			})
 			.then((resp) => {

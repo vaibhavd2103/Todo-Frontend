@@ -25,4 +25,6 @@ function useWindowDimensions() {
 	return windowDimensions;
 }
 
+export const baseUrl = "https://vaibhav-todo.herokuapp.com";
+
 export { useWindowDimensions };

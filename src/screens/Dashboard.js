@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Todo from "../components/Todo";
-import { useWindowDimensions } from "../constants/constants";
+import { baseUrl, useWindowDimensions } from "../constants/constants";
 import CompletedTodo from "../components/CompletedTodo";
 import { ACCESS_KEY } from "../constants/config";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -20,6 +20,7 @@ function Dashboard() {
 	const [status, setStatus] = useState("Add");
 	const [selectedTodo, setSelectedTodo] = useState("");
 	const [deleteModal, setDeleteModal] = useState(false);
+	const [loading, setLoading] = useState(true);
 	let todoRef = useRef(null);
 
 	useEffect(() => {
@@ -33,7 +34,7 @@ function Dashboard() {
 
 	const addTodo = async () => {
 		await axios
-			.post("http://localhost:5000/addTodo", {
+			.post(`${baseUrl}/addTodo`, {
 				todo: todo,
 				user_id: user?._id,
 				created_at: new Date(),
@@ -50,10 +51,11 @@ function Dashboard() {
 
 	const getTodos = async (user) => {
 		await axios
-			.get(`http://localhost:5000/getTodos?user_id=${user?._id}`)
+			.get(`${baseUrl}/getTodos?user_id=${user?._id}`)
 			.then((resp) => {
 				// console.log("====>", resp?.data);
 				// setTodos(resp?.data?.todos);
+				setLoading(false);
 				let compTodos = resp?.data?.todos?.filter((item) => {
 					if (item?.completed === true) {
 						return item;
@@ -70,6 +72,7 @@ function Dashboard() {
 			})
 			.catch((err) => {
 				console.log(err?.response?.data?.error);
+				setLoading(false);
 			});
 	};
 
@@ -113,7 +116,7 @@ function Dashboard() {
 
 	const editTodo = async () => {
 		await axios
-			.post(`http://localhost:5000/editTodo`, {
+			.post(`${baseUrl}/editTodo`, {
 				todo_id: selectedTodo?._id,
 				todo: todo,
 				created_at: new Date(),
@@ -147,7 +150,7 @@ function Dashboard() {
 
 	const deleteTodo = async () => {
 		await axios
-			.post(`http://localhost:5000/deleteTodo`, {
+			.post(`${baseUrl}/deleteTodo`, {
 				todo_id: selectedTodo?._id,
 			})
 			.then((resp) => {
@@ -293,6 +296,11 @@ function Dashboard() {
 				</div>
 			</form>
 			{/* </form> */}
+			{loading && (
+				<div style={{ display: "flex", flex: 1 }}>
+					<a style={{ color: "#fff", fontSize: 30 }}>Loading...</a>
+				</div>
+			)}
 			<div
 				style={{
 					display: "flex",
