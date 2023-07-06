@@ -25,6 +25,6 @@ function useWindowDimensions() {
 	return windowDimensions;
 }
 
-export const baseUrl = "https://vaibhav-todo.herokuapp.com";
+export const baseUrl = "https://todobackend-58ta.onrender.com";
 
 export { useWindowDimensions };
